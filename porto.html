@@ -1,0 +1,794 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harsha | Personal Portfolio</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+    :root {
+      --bg: #080808;
+      --surface: #111111;
+      --gold: #d6b56d;
+      --gold-light: #f2dca2;
+      --text: #f5f2eb;
+      --muted: #a6a29a;
+      --border: rgba(214,181,109,.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    /* NAVBAR */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,8,8,.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: .9rem;
+      transition: .3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold-light);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--border);
+      color: var(--gold);
+      background: transparent;
+      padding: 7px 12px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      background: rgba(214,181,109,.08);
+      filter: blur(100px);
+      right: -100px;
+      top: 50px;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: .75rem;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      margin-bottom: 24px;
+    }
+
+    h1 span, .gold {
+      color: var(--gold);
+    }
+
+    .hero p {
+      max-width: 570px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      padding: 12px 22px;
+      transition: .3s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #111;
+      font-weight: 700;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(214,181,109,.15);
+    }
+
+    .btn-outline {
+      color: var(--gold);
+      background: transparent;
+    }
+
+    .monogram {
+      width: min(340px, 100%);
+      aspect-ratio: 1;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      justify-self: center;
+      position: relative;
+      background: radial-gradient(circle, #242016 0%, #0c0c0c 68%);
+      box-shadow: 0 0 80px rgba(214,181,109,.08);
+    }
+
+    .monogram::before,
+    .monogram::after {
+      content: "";
+      position: absolute;
+      inset: 15px;
+      border: 1px solid rgba(214,181,109,.3);
+      border-radius: 50%;
+    }
+
+    .monogram::after {
+      inset: -13px;
+      border-style: dashed;
+      animation: rotate 35s linear infinite;
+    }
+
+    .monogram span {
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem;
+      color: var(--gold-light);
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 100px 0;
+      scroll-margin-top: 75px;
+    }
+
+    .section-heading {
+      margin-bottom: 45px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2.2rem, 5vw, 3.3rem);
+      margin-bottom: 14px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 600px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: start;
+    }
+
+    .about-copy {
+      color: var(--muted);
+    }
+
+    .about-copy p + p {
+      margin-top: 18px;
+    }
+
+    .info-card {
+      padding: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 15px 0;
+      border-bottom: 1px solid #27231b;
+    }
+
+    .info-row:last-child { border: none; }
+    .info-row span:first-child { color: var(--muted); }
+    .info-row span:last-child { color: var(--gold-light); }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .skill-card {
+      padding: 28px 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: .3s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+    }
+
+    .skill-number {
+      color: var(--gold);
+      font-size: .8rem;
+      letter-spacing: 2px;
+    }
+
+    .skill-card h3 {
+      margin: 22px 0 12px;
+      font-size: 1.25rem;
+    }
+
+    .skill-card p {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: .3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold);
+    }
+
+    .project-art {
+      height: 190px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #292217, #101010 70%);
+      color: var(--gold);
+      font-size: 3.5rem;
+    }
+
+    .project-content {
+      padding: 24px;
+    }
+
+    .project-content h3 {
+      margin-bottom: 12px;
+      font-size: 1.35rem;
+    }
+
+    .project-content p {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-bottom: 20px;
+    }
+
+    .project-link {
+      color: var(--gold);
+      font-size: .9rem;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 50px;
+    }
+
+    .contact-copy p {
+      color: var(--muted);
+      margin: 18px 0;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 15px;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      outline: none;
+      border-radius: 0;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .contact-form textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      justify-self: start;
+    }
+
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    /* ANIMATION */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      max-width: calc(100% - 48px);
+      padding: 14px 20px;
+      background: var(--gold);
+      color: #111;
+      z-index: 200;
+      display: none;
+    }
+
+    @media (max-width: 850px) {
+      .hero-grid, .about-grid, .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid { gap: 65px; }
+      .monogram { width: 250px; }
+      .monogram span { font-size: 6rem; }
+
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      nav { min-height: 68px; }
+
+      .menu-toggle { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        padding: 22px 5%;
+        background: #0b0b0b;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .hero { min-height: auto; padding: 90px 0; }
+      section { padding: 75px 0; }
+
+      .skills-grid, .projects-grid { grid-template-columns: 1fr; }
+      .info-card { padding: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="container">
+      <a class="logo" href="#home">H.</a>
+
+      <button class="menu-toggle" id="menuToggle"
+        aria-label="Buka navigasi" aria-expanded="false">MENU</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">Welcome to my portfolio</div>
+          <h1>Hi, I'm <span>Harsha.</span><br>Building ideas<br>into reality.</h1>
+          <p>
+            Saya tertarik pada teknologi, data analytics, dan pengembangan
+            digital. Saya percaya bahwa ide yang baik dapat berkembang
+            menjadi sesuatu yang bermakna melalui proses belajar dan kreativitas.
+          </p>
+
+          <div class="actions">
+            <a href="#projects" class="btn btn-primary">Explore My Work ↗</a>
+            <a href="#contact" class="btn btn-outline">Get In Touch</a>
+          </div>
+        </div>
+
+        <div class="monogram reveal" aria-label="Monogram H">
+          <span>H</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">01 — About me</div>
+          <h2>A little about <span class="gold">myself.</span></h2>
+          <p>Mengenal perjalanan, minat, dan hal yang sedang saya kembangkan.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-copy reveal">
+            <p>
+              Halo, saya Harsha. Saya memiliki ketertarikan pada dunia
+              teknologi dan bagaimana data dapat membantu manusia mengambil
+              keputusan yang lebih baik.
+            </p>
+            <p>
+              Saat ini saya terus mengembangkan kemampuan dalam analisis data,
+              pemecahan masalah, dan pengembangan web. Saya senang mempelajari
+              hal baru serta mengubah pengetahuan menjadi proyek nyata.
+            </p>
+          </div>
+
+          <div class="info-card reveal">
+            <div class="info-row">
+              <span>Nama</span><span>Harsha</span>
+            </div>
+            <div class="info-row">
+              <span>Fokus</span><span>Data & Technology</span>
+            </div>
+            <div class="info-row">
+              <span>Minat</span><span>Analytics & Web</span>
+            </div>
+            <div class="info-row">
+              <span>Status</span><span>Open to Learning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">02 — Expertise</div>
+          <h2>Skills & <span class="gold">interests.</span></h2>
+          <p>Bidang yang sedang saya pelajari dan kembangkan.</p>
+        </div>
+
+        <div class="skills-grid">
+          <article class="skill-card reveal">
+            <span class="skill-number">01 / DATA</span>
+            <h3>Data Analytics</h3>
+            <p>Mengolah data untuk menemukan pola dan menghasilkan insight.</p>
+          </article>
+
+          <article class="skill-card reveal">
+            <span class="skill-number">02 / VISUAL</span>
+            <h3>Data Visualization</h3>
+            <p>Menyampaikan informasi melalui grafik dan visual yang jelas.</p>
+          </article>
+
+          <article class="skill-card reveal">
+            <span class="skill-number">03 / WEB</span>
+            <h3>Web Development</h3>
+            <p>Membangun website yang responsif menggunakan teknologi web.</p>
+          </article>
+
+          <article class="skill-card reveal">
+            <span class="skill-number">04 / THINK</span>
+            <h3>Problem Solving</h3>
+            <p>Menganalisis masalah dan mencari solusi secara terstruktur.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">03 — Selected work</div>
+          <h2>Featured <span class="gold">projects.</span></h2>
+          <p>Contoh proyek yang bisa diganti dengan hasil karya asli kamu.</p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <div class="project-art">⌘</div>
+            <div class="project-content">
+              <h3>Data Dashboard</h3>
+              <p>Konsep dashboard untuk menyajikan data dalam bentuk visual yang mudah dipahami.</p>
+              <a href="#contact" class="project-link"
+                data-project="Data Dashboard">Discuss project ↗</a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-art">◈</div>
+            <div class="project-content">
+              <h3>Portfolio Website</h3>
+              <p>Website pribadi dengan desain minimalis, responsif, dan tampilan premium.</p>
+              <a href="#contact" class="project-link"
+                data-project="Portfolio Website">Discuss project ↗</a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-art">⌁</div>
+            <div class="project-content">
+              <h3>Data Exploration</h3>
+              <p>Eksplorasi dataset untuk memahami tren, pola, dan informasi penting.</p>
+              <a href="#contact" class="project-link"
+                data-project="Data Exploration">Discuss project ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-copy reveal">
+            <div class="eyebrow">04 — Contact</div>
+            <h2>Let's create something <span class="gold">meaningful.</span></h2>
+            <p>
+              Punya ide, pertanyaan, atau ingin berdiskusi tentang proyek?
+              Kirim pesan melalui formulir ini.
+            </p>
+            <p class="gold">Email: radityahatshavardana0719@gmail.com</p>
+          </div>
+
+          <form class="contact-form reveal" id="contactForm">
+            <input id="name" type="text" placeholder="Nama kamu" required>
+            <input id="email" type="email" placeholder="Email kamu" required>
+            <textarea id="message" placeholder="Ceritakan pesanmu..." required></textarea>
+            <button type="submit" class="btn btn-primary">Send Message ↗</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Harsha. All rights reserved.</span>
+      <span>Designed with purpose. Crafted with care.</span>
+    </div>
+  </footer>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // Tahun otomatis
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // Navigasi mobile
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", isOpen);
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Animasi saat elemen terlihat
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(element => {
+      revealObserver.observe(element);
+    });
+
+    // Navigasi aktif sesuai bagian yang dibuka
+    const sections = document.querySelectorAll("main section[id]");
+    const navItems = document.querySelectorAll(".nav-links a");
+
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navItems.forEach(link => {
+            link.classList.toggle(
+              "active",
+              link.getAttribute("href") === "#" + entry.target.id
+            );
+          });
+        }
+      });
+    }, { rootMargin: "-35% 0px -55% 0px" });
+
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // Notifikasi sederhana
+    const toast = document.getElementById("toast");
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.style.display = "none";
+      }, 3500);
+    }
+
+    // Tombol proyek mengisi pesan kontak
+    document.querySelectorAll("[data-project]").forEach(link => {
+      link.addEventListener("click", () => {
+        const project = link.dataset.project;
+        document.getElementById("message").value =
+          "Halo, saya ingin berdiskusi tentang " + project + ".";
+      });
+    });
+
+    // Form kontak membuka aplikasi email
+    document.getElementById("contactForm").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      // Ganti dengan alamat email kamu sendiri
+      const recipient = "radityaharshavardana0719@gmail.com";
+
+      if (recipient === "emailkamu@example.com") {
+        showToast("Ganti email penerima di kode JavaScript terlebih dahulu.");
+        return;
+      }
+
+      const subject = encodeURIComponent("Pesan dari website portfolio");
+      const body = encodeURIComponent(
+        "Nama: " + name + "\nEmail: " + email + "\n\nPesan:\n" + message
+      );
+
+      window.location.href =
+        "mailto:" + recipient + "?subject=" + subject + "&body=" + body;
+    });
+  </script>
+</body>
+</html>
