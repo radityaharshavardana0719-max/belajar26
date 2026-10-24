@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HARSHA | Gaming Universe</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #070914;
+  --cyan: #50f6ff;
+  --purple: #9b6bff;
+  --text: #f3f5ff;
+  --muted: #9ca7c8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 15% 10%, #29164f, transparent 40%),
+    radial-gradient(circle at 85% 40%, #073748, transparent 35%),
+    var(--bg);
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* NAVBAR */
+nav {
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffffff20;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.logo span {
+  color: var(--cyan);
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  margin-left: 22px;
+  font-size: 13px;
+  transition: .3s;
+}
+
+nav a:hover {
+  color: var(--cyan);
+}
+
+/* HERO */
+.hero {
+  min-height: 580px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 30px;
+}
+
+.tag {
+  color: var(--cyan);
+  letter-spacing: 3px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: clamp(42px, 6vw, 75px);
+  line-height: 1;
+  margin: 22px 0;
+}
+
+.gradient {
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
+  color: transparent;
+  background-clip: text;
+}
+
+.description {
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 450px;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+button {
+  padding: 13px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: .25s;
+}
+
+.primary {
+  color: #061018;
+  background: var(--cyan);
+  box-shadow: 0 0 20px #50f6ff30;
+}
+
+.secondary {
+  background: #171d30;
+  color: white;
+  border: 1px solid #ffffff25;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px #50f6ff40;
+}
+
+/* PLANET */
+.planet-area {
+  display: grid;
+  place-items: center;
+  min-height: 350px;
+  position: relative;
+}
+
+.planet {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 25%,
+    #d9ffff,
+    #50f6ff 15%,
+    #7451d9 45%,
+    #160e35 75%
+  );
+  box-shadow:
+    0 0 40px #50f6ff60,
+    0 0 100px #9b6bff40;
+  animation: float 4s ease-in-out infinite;
+}
+
+.orbit {
+  position: absolute;
+  width: 330px;
+  height: 100px;
+  border: 2px solid #50f6ff90;
+  border-radius: 50%;
+  transform: rotate(-25deg);
+  animation: rotate 10s linear infinite;
+}
+
+.orbit.two {
+  width: 370px;
+  height: 120px;
+  border-color: #9b6bff90;
+  animation-direction: reverse;
+  animation-duration: 15s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* GAME CATALOG */
+.section-title {
+  margin: 40px 0 20px;
+}
+
+.section-title h2 {
+  margin-top: 10px;
+  font-size: 30px;
+}
+
+.games {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.game {
+  background: #111629d9;
+  border: 1px solid #ffffff18;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.game:hover {
+  transform: translateY(-7px);
+  border-color: var(--cyan);
+  box-shadow: 0 10px 35px #50f6ff15;
+}
+
+.game-art {
+  height: 160px;
+  display: grid;
+  place-items: center;
+  font-size: 65px;
+  background: linear-gradient(135deg, #21174b, #092d40);
+}
+
+.game:nth-child(2) .game-art {
+  background: linear-gradient(135deg, #42175a, #10152b);
+}
+
+.game:nth-child(3) .game-art {
+  background: linear-gradient(135deg, #10414a, #111629);
+}
+
+.game-info {
+  padding: 18px;
+}
+
+.genre {
+  color: var(--cyan);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.game h3 {
+  margin: 12px 0;
+}
+
+.game p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  min-height: 44px;
+}
+
+.game button {
+  margin-top: 17px;
+  width: 100%;
+  background: #50f6ff12;
+  border: 1px solid #50f6ff50;
+  color: var(--cyan);
+}
+
+/* FOOTER */
+footer {
+  margin-top: 60px;
+  padding: 25px 0;
+  border-top: 1px solid #ffffff20;
+  color: var(--muted);
+  text-align: center;
+  font-size: 12px;
+}
+
+/* MOBILE */
+@media (max-width: 750px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 45px 0;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .description {
+    margin: auto;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .planet-area {
+    grid-row: 1;
+    min-height: 320px;
+  }
+
+  .planet {
+    width: 190px;
+    height: 190px;
+  }
+
+  .orbit {
+    width: 270px;
+    height: 80px;
+  }
+
+  .orbit.two {
+    width: 300px;
+    height: 95px;
+  }
+
+  .games {
+    grid-template-columns: 1fr;
+  }
+
+  nav a {
+    margin-left: 8px;
+    font-size: 11px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <nav>
+    <div class="logo">NEXUS<span>//</span></div>
+    <div>
+      <a href="#home">HOME</a>
+      <a href="#games">GAMES</a>
+      <a href="#community">COMMUNITY</a>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="tag">WELCOME TO THE FUTURE</div>
+
+      <h1>
+        PLAY BEYOND<br>
+        <span class="gradient">THE LIMIT.</span>
+      </h1>
+
+      <p class="description">
+        Masuki dunia gaming futuristik. Temukan petualangan
+        baru, jelajahi semesta digital, dan pilih game favoritmu.
+      </p>
+
+      <div class="buttons">
+        <button class="primary"
+          onclick="goToGames()">
+          EXPLORE GAMES ↗
+        </button>
+
+        <button class="secondary"
+          onclick="surpriseMe()">
+          SURPRISE ME ✦
+        </button>
+      </div>
+    </div>
+
+    <div class="planet-area">
+      <div class="orbit"></div>
+      <div class="orbit two"></div>
+      <div class="planet"></div>
+    </div>
+  </section>
+
+  <section id="games">
+    <div class="section-title">
+      <div class="tag">SELECT YOUR REALITY</div>
+      <h2>Featured Games</h2>
+    </div>
+
+    <div class="games">
+
+      <article class="game">
+        <div class="game-art">🏎️</div>
+        <div class="game-info">
+          <div class="genre">RACING / ARCADE</div>
+          <h3>Cyber Drift</h3>
+          <p>Balapan berkecepatan tinggi di kota neon masa depan.</p>
+          <button onclick="showGame('Cyber Drift')">
+            VIEW DETAILS ↗
+          </button>
+        </div>
+      </article>
+
+      <article class="game">
+        <div class="game-art">🌌</div>
+        <div class="game-info">
+          <div class="genre">ACTION / RPG</div>
+          <h3>Void Protocol</h3>
+          <p>Jelajahi galaksi dan ungkap rahasia peradaban kuno.</p>
+          <button onclick="showGame('Void Protocol')">
+            VIEW DETAILS ↗
+          </button>
+        </div>
+      </article>
+
+      <article class="game">
+        <div class="game-art">🎯</div>
+        <div class="game-info">
+          <div class="genre">TACTICAL / FPS</div>
+          <h3>Neon Siege</h3>
+          <p>Susun strategi bersama tim di arena futuristik.</p>
+          <button onclick="showGame('Neon Siege')">
+            VIEW DETAILS ↗
+          </button>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer id="community">
+    © 2026 NEXUS GAMING UNIVERSE
+    <br><br>
+    DESIGNED FOR THE NEXT LEVEL.
+  </footer>
+
+</div>
+
+<script>
+// Tombol untuk menuju katalog game
+function goToGames() {
+  document.getElementById("games").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+// Menampilkan detail game
+function showGame(name) {
+  const details = {
+    "Cyber Drift":
+      "Game balapan futuristik dengan kota neon dan kecepatan ekstrem.",
+    "Void Protocol":
+      "Petualangan fiksi ilmiah untuk menjelajahi galaksi misterius.",
+    "Neon Siege":
+      "Game tembak-menembak taktis dengan fokus kerja sama tim."
+  };
+
+  alert(name + "\n\n" + details[name]);
+}
+
+// Memilih game secara acak
+function surpriseMe() {
+  const games = [
+    "Cyber Drift",
+    "Void Protocol",
+    "Neon Siege"
+  ];
+
+  const randomIndex = Math.floor(
+    Math.random() * games.length
+  );
+
+  showGame(games[randomIndex]);
+}
+</script>
+</body>
+</html>
